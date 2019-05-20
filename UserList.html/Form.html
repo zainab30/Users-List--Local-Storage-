@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Form</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Lobster');
+
+        table {
+            margin: auto;
+            font-size: 23px;
+            font-family: lobster,'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-shadow: 1px 1px 1px aqua;
+        }
+
+        fieldset {
+            width: 50%;
+            height: 55%;
+            text-align: center;
+            padding: 10px;
+            margin: auto;
+            box-shadow: 3px 3px 3px black;
+        }
+
+        #text {
+            font-size: 23px;
+            font-family: lobster,'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-shadow: 1px 1px 1px grey;
+        }
+
+        .butn {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-weight: bold;
+            font-size: 20px;
+            padding: 15px;
+            width: 200px;
+            align-self: center;
+            border-radius: 10px;
+            background-color: aqua;
+            box-shadow: 2px 2px 2px black;
+            padding: 3px;
+            margin: 5px;
+
+        }
+
+        input {
+            height: 30px;
+            width: 100%;
+            margin-left: 112%;
+            box-shadow: 2px 2px 2px black;
+        }
+    </style>
+</head>
+
+<body>
+    <fieldset>
+        <table>
+            <legend id="text">Add User</legend>
+            <tr>
+                <td><label>Name : </label></td>
+                <td><input type="text" id="name" /></td>
+            </tr>
+            <tr>
+                <td><label>Age : </label></td>
+                <td><input type="text" id="age" /></td>
+            </tr>
+            <tr>
+                <td><label>Gender : </label></td>
+                <td><input type="text" id="gender" /></td>
+            </tr>
+            <tr>
+                <td><label>Nationality : </label></td>
+                <td><input type="text" id="nationality" /></td>
+            </tr>
+            <tr>
+                <td><label>Religion : </label></td>
+                <td><input type="text" id="religion" /></td>
+            </tr>
+            <tr>
+                <td><label>Occupation : </label></td>
+                <td><input type="text" id="job" /></td>
+            </tr>
+            <tr>
+                <td colspan="2"><button class="butn" type="button" onclick="Submit();">Submit</button></td>
+                <td colspan="2"><button class="butn" onclick="List();" type="submit">View List</button></td>
+            </tr>
+        </table>
+    </fieldset>
+</body>
+<script>
+
+    var users = [];
+    var userList = JSON.parse(localStorage.getItem('users')) || {};
+    for (var i = 0; i < userList.length; i++) {
+        users.push(userList[i]);
+    }
+
+    function User(Name, Age, Nationality, Job, Religion, Gender) {
+        this.name = Name;
+        this.age = Age;
+        this.nationality = Nationality;
+        this.occupation = Job;
+        this.religion = Religion;
+        this.gender = Gender;
+        this.id = Date.now();
+    }
+
+    function Submit() {
+        alert("User Added in List");
+        var name = document.getElementById('name').value;
+        var age = document.getElementById('age').value;
+        var nationality = document.getElementById("nationality").value;
+        var job = document.getElementById('job').value;
+        var religion = document.getElementById('religion').value;
+        var gender = document.getElementById('gender').value;
+        users.push(new User(name, age, nationality, job, religion, gender));
+        localStorage.setItem("users", JSON.stringify(users));
+        document.getElementById('name').value;
+        document.getElementById('age').value;
+        document.getElementById('gender').value;
+        document.getElementById('nationality').value;
+        document.getElementById('religion').value;
+        document.getElementById('job').value;
+
+    }
+
+    function List() {
+        window.location.href = "./List.html"
+    }
+
+
+</script>
+
+</html>

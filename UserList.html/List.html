@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Users List</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Lobster');
+
+        #table {
+            width: 100%;
+            margin: auto;
+            padding: 10px;
+            box-sizing: border-box;
+            font-size: 1.05em;
+            font-family: lobster ,'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        td,
+        th {
+            box-sizing: border-box;
+            padding: 10px;
+            text-align: center;
+            vertical-align: center;
+            border: 1px solid black;
+        }
+
+        #details {
+            margin-top: 0px;
+        }
+
+        #button {
+            text-align: center;
+        }
+
+        th {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            text-shadow: 1px 1px 1px aqua;
+        }
+
+        .btn {
+            font-size: 20px;
+            padding: 5px;
+            margin-top: 5%;
+            margin-left: 1%;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-weight: bold;
+            width: 200px;
+            align-self: center;
+            border-radius: 15px;
+            background-color: aqua;
+            box-shadow: 2px 2px 2px black;
+        }
+    </style>
+</head>
+
+<body>
+    <table id="table">
+        <tr>
+            <th colspan="9" style="font-size: 35px;">User List</th>
+        </tr>
+        <tr>
+            <th>S.NO</th>
+            <th>NAME</th>
+            <th>AGE</th>
+            <th>GENDER</th>
+            <th>NATIONALITY</th>
+            <th>RELIGION</th>
+            <th>OCCUPATION</th>
+            <th>ID</th>
+            <th>DETAILS</th>
+        </tr>
+    </table>
+    <div id="button">
+        <button onclick="Clear()" class="btn"> Clear All </button>
+        <button onclick="Back()" class="btn"> Back </button>
+    </div>
+</body>
+<script>
+    var userList = JSON.parse(localStorage.getItem('users')) || {} ;
+    for (var i = 0; i < userList.length; i++) {
+        document.getElementById('table').innerHTML += "<tr><td class = ' s.no'>" + i + "</td><td >" + userList[i].name + "</td><td >" + userList[i].age + "</td><td >" + userList[i].gender + "</td><td >" + userList[i].nationality + "</td><td >" + userList[i].religion + "</td><td >" + userList[i].occupation + "</td><td >" + userList[i].id + `</td><td> <button class = 'btn' id = 'details' onclick = 'Details(${userList[i].id})'>User Details</button>`;
+    }
+    function Details(id) {
+        window.location.href = "./detail.html#" +id;
+    }
+    function Back() {
+        window.location.href = "./Form.html";
+    }
+    function Clear() {
+        localStorage.clear();
+        document.location.reload();
+    }
+
+</script>
+
+</html>
